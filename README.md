@@ -2,6 +2,8 @@
 
 Para este render, crearemos una escena de una fogata en la noche al rededor de un bosque.
 
+Usaremos el framework de javascript ThreeJS para nuestro proyecto.
+
 Vamos a separar la escena en dos tipos de formas. Simples y complejas.
 
 Las formas complejas pueden ser el bosque, los arboles, plantas, etc... y para las primitivas podemos hacer piedras pequeñas, la tierra con una textura, el sacate.
