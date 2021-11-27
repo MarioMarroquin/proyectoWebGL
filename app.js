@@ -64,8 +64,8 @@ document.body.appendChild(renderer.domElement);
 const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
-    0.1,
-    1000
+    1,
+    10000
 );
 
 camera.position.z = 20;
@@ -75,6 +75,10 @@ camera.position.x = 0;
 
 // create control to move around scene, center fix.
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.minDistance = 5;
+controls.maxDistance = 30;
+controls.minPolarAngle = 0.8;
+controls.maxPolarAngle = 1.5;
 controls.update();
 
 
@@ -115,6 +119,7 @@ scene.add(fire.mesh);
 fire.mesh.position.set( 0, fireHeight / 2, 0 );
 
 
+
 // load textures a single time for trees
 const trunkTexture = new THREE.TextureLoader().load('textures/trunk.jpg');
 const leaveTexture = new THREE.TextureLoader().load('textures/leaves.jpg');
@@ -124,12 +129,38 @@ for (let i = 0; i < 500; i++) {
 }
 
 
+
+
 // render campfire
 for (let i = 0; i < 50; i++) {
   renderCampsite();
 
 }
 
+var axisHelper = new THREE.AxisHelper( 5 );
+scene.add( axisHelper );
+
+let materialArray = [];
+let texture_ft = new THREE.TextureLoader().load( 'sky/sleepyhollow_ft.jpg');
+let texture_bk = new THREE.TextureLoader().load( 'sky/sleepyhollow_bk.jpg');
+let texture_up = new THREE.TextureLoader().load( 'sky/sleepyhollow_up.jpg');
+let texture_dn = new THREE.TextureLoader().load( 'sky/sleepyhollow_dn.jpg');
+let texture_rt = new THREE.TextureLoader().load( 'sky/sleepyhollow_rt.jpg');
+let texture_lf = new THREE.TextureLoader().load( 'sky/sleepyhollow_lf.jpg');
+
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+
+for (let i = 0; i < 6; i++)
+  materialArray[i].side = THREE.BackSide;
+
+let skyboxGeo = new THREE.BoxGeometry( 10000, 10000, 10000);
+let skybox = new THREE.Mesh( skyboxGeo, materialArray );
+scene.add( skybox );
 
 function render() {
   requestAnimationFrame(render);
