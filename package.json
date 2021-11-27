@@ -1,0 +1,23 @@
+{
+  "name": "proyectoweblg",
+  "version": "1.0.0",
+  "description": "Graficas Computacionales",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deply": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarioMarroquin/proyectoWebGL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarioMarroquin/proyectoWebGL/issues"
+  },
+  "homepage": "https://github.com/MarioMarroquin/proyectoWebGL#readme",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
